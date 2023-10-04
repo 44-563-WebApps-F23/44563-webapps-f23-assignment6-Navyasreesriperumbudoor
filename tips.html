@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <title>The Tip values</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" 
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" 
+      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+      <style>
+        .form{
+            width: 40%;
+           margin-left: 25px;
+        }
+        
+    </style>
+ </head>s
+<body>
+<div class="form">
+<h1>Navyasree Sriperumbudoor shows tip value</h1>
+<br>
+<form>
+    <label for="baseAmount">Enter base amount </label>
+    <input type="number" class="border border border-dark" id="baseAmount" name="baseAmount" value="50"><br><br>
+    <label for="tipPercent">Enter the tip percent </label>
+    <input type="number" class="border border border-dark" id="tipPercent" name="tipPercent" value="15"><br><br>
+</form>
+<button onclick="tips()" class="btn btn-warning">Show tip</button>
+<p id="result"></p>
+<form>
+    <input type="radio" id="calSum" name="operation" value="sum" onclick="chooseOp()">
+    <label for="calSum">sum</label><br>
+    <input type="radio" id="calDiff" name="operation" value="difference" onclick="chooseOp()">
+    <label for="calDiff">diff</label><br>
+    <input type="radio" id="calMult" name="operation" value="product" onclick="chooseOp()">
+    <label for="calMult">mult</label><br>
+</form>
+  <p id="operation_Result"></p>
+<script>
+function tips() {
+        const baseCount = parseFloat(document.getElementById('baseAmount').value);
+        const tipCount = parseFloat(document.getElementById('tipPercent').value);
+            let myOutput="";
+            let toShow= "";
+            for (let i = 0; i < 5; i++) {
+                const tipLevel = tipCount + i * 4;
+                const calculatedTip = (baseCount * tipLevel) / 100;
+                toShow += `${tipLevel}% is ${calculatedTip.toFixed(1)}; `;
+            }
+            myOutput = `Tips are: ${toShow}`;
+            document.getElementById('result').textContent = myOutput;
+        }
+function chooseOp() {
+        const operation = document.querySelector('input[name="operation"]:checked').value;
+        const baseA = parseFloat(document.getElementById('baseAmount').value);
+        const tipP = parseFloat(document.getElementById('tipPercent').value);
+        let operationResult;
+        switch (operation) {
+                case "sum":
+                    operationResult = `Sum of ${baseA} and ${tipP} is ${baseA + tipP}`;
+                    break;
+                case "difference":
+                    operationResult = `Difference between ${baseA} and ${tipP} is ${baseA - tipP}`;
+                    break;
+                case "product":
+                    operationResult = `Product of ${baseA} and ${tipP} is ${baseA * tipP}`;
+                    break;
+                default:
+                    operationResult = "Please select Either Sum or Difference or Multiplication";
+            }
+            document.getElementById('operation_Result').textContent = `${operationResult}`;
+    }
+</script>
+</div>
+</body>
+</html> 
